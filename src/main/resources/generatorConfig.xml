@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!-- 在项目根目录下(pom.xml同级)打开命令行工具：mvn mybatis-generator:generate -->
+<generatorConfiguration>
+    <!--加载ClassPath下的属性文件，最多配置一个-->
+    <!--<properties resource=""></properties>-->
+    <!--加载驱动类 可以配置多个-->
+    <classPathEntry location="F://mysql-connector-java-5.1.15.jar" />
+    <!--最少配置一个-->
+    <context id="mybatis-generator" targetRuntime="MyBatis3" defaultModelType="flat">
+        <!--自动给关键字添加分隔符属性 例如mysql表名添加 ``-->
+        <property name="autoDelimitKeywords" value="true"/>
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <!--http://mbg.cndocs.tk/reference/plugins.html-->
+        <!--<plugin type="org.mybatis.generator.plugins."></plugin>-->
+        <!-- 控制生成代码中的注释信息 ，自定义接口 CommentGenerator -->
+        <commentGenerator>
+            <!--阻止生成注释-->
+            <property name="suppressAllComments" value="true" />
+            <!--阻止生成的注释包含时间戳-->
+            <property name="suppressDate" value="true" />
+            <!--注释是否添加数据库表的备注信息-->
+            <property name="addRemarkComments" value="true"/>
+        </commentGenerator>
+        <!-- 注释控制完毕 -->
+
+        <!-- 数据库地址、用户名、密码 only one -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://rm-2ze2g7ns6cx4y9346o.mysql.rds.aliyuncs.com:3306/qmsdb2?autoReconnect=true"
+                        userId="qmsdb"
+                        password="jk23RuF!@9isaHf23">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- 后台生成 -->
+        <!-- model -->
+        <javaModelGenerator targetPackage="com.ft.customer.ose"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="false" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!-- Mapper映射 -->
+        <sqlMapGenerator targetPackage="mybatis"
+                         targetProject="src/main/resources">
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+
+        <!-- Mapper接口 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.ft.customer.dao.ose" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+
+        <!-- 表 -->
+        <table tableName="qms_ose_user_card_relation" domainObjectName="QmsOseUserCardRelation" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+    </context>
+</generatorConfiguration>
